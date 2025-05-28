@@ -1,0 +1,54 @@
+<!-- frontend/pages/cart.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - FreshMart</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">🛒 FreshMart</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <a href="/cart" class="cart-icon">
+                🛒 Cart
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="cart-container">
+            <div class="container">
+                <h2 class="section-title">Shopping Cart</h2>
+                
+                <div class="cart-content">
+                    <div class="cart-items">
+                        <!-- Cart items will be loaded here -->
+                    </div>
+                    
+                    <div class="cart-summary">
+                        <!-- Cart summary will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 FreshMart. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/cart.js"></script>
+</body>
+</html>

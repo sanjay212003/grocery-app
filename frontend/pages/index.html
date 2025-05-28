@@ -1,0 +1,183 @@
+<!-- frontend/pages/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshMart - Your Online Grocery Store</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="icon" href="/assets/icons/grocery-cart.svg">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">🛒 FreshMart</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <a href="/cart" class="cart-icon">
+                🛒 Cart
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Fresh Groceries Delivered</h1>
+                <p>Get the freshest produce and groceries delivered right to your doorstep</p>
+                <a href="/products" class="btn">Shop Now</a>
+            </div>
+        </section>
+
+        <section class="products-section">
+            <div class="container">
+                <h2 class="section-title">Featured Products</h2>
+                <div class="products-grid" id="featured-products">
+                    <div class="loading">Loading featured products...</div>
+                </div>
+                <div style="text-align: center;">
+                    <a href="/products" class="btn btn-secondary">View All Products</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 FreshMart. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/assets/js/main.js"></script>
+    <script>
+        class HomePage {
+            constructor() {
+                this.featuredProducts = [];
+                this.init();
+            }
+
+            async init() {
+                // Wait for main app to be ready
+                const waitForApp = () => {
+                    if (window.groceryApp) {
+                        this.loadFeaturedProducts();
+                    } else {
+                        setTimeout(waitForApp, 100);
+                    }
+                };
+                waitForApp();
+            }
+
+            async loadFeaturedProducts() {
+                try {
+                    const products = await window.groceryApp.fetchAPI('/products');
+                    this.featuredProducts = products.slice(0, 4); // Show first 4 products
+                    this.renderFeaturedProducts();
+                } catch (error) {
+                    console.error('Failed to load featured products:', error);
+                    this.showError();
+                }
+            }
+
+            renderFeaturedProducts() {
+                const container = document.getElementById('featured-products');
+                if (!container) return;
+
+                // Clear loading message
+                container.innerHTML = '';
+
+                if (this.featuredProducts.length === 0) {
+                    container.innerHTML = '<p class="loading">No featured products available.</p>';
+                    return;
+                }
+
+                // Create product cards using DOM methods
+                this.featuredProducts.forEach(product => {
+                    const productCard = this.createProductCard(product);
+                    container.appendChild(productCard);
+                });
+            }
+
+            createProductCard(product) {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+
+                // Create image container
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'image-container';
+
+                const img = document.createElement('img');
+                img.src = product.image;
+                img.alt = product.name;
+                img.className = 'product-image loading';
+                img.loading = 'lazy';
+
+                // Handle image load success
+                img.onload = () => {
+                    img.classList.remove('loading');
+                    img.classList.add('loaded');
+                };
+
+                // Handle image load error
+                img.onerror = () => {
+                    if (!img.dataset.fallbackAttempted) {
+                        img.dataset.fallbackAttempted = 'true';
+                        img.src = `${window.groceryApp.baseURL}/placeholder/300/200?text=${encodeURIComponent(product.name)}`;
+                    }
+                };
+
+                imageContainer.appendChild(img);
+
+                // Create product info
+                const productInfo = document.createElement('div');
+                productInfo.className = 'product-info';
+
+                const productName = document.createElement('h3');
+                productName.className = 'product-name';
+                productName.textContent = product.name;
+
+                const productPrice = document.createElement('p');
+                productPrice.className = 'product-price';
+                productPrice.textContent = `$${product.price.toFixed(2)}`;
+
+                const productDescription = document.createElement('p');
+                productDescription.className = 'product-description';
+                productDescription.textContent = product.description;
+
+                const addToCartBtn = document.createElement('button');
+                addToCartBtn.className = 'btn';
+                addToCartBtn.textContent = 'Add to Cart';
+                addToCartBtn.onclick = () => window.groceryApp.addToCart(product.id);
+
+                // Append all elements
+                productInfo.appendChild(productName);
+                productInfo.appendChild(productPrice);
+                productInfo.appendChild(productDescription);
+                productInfo.appendChild(addToCartBtn);
+
+                card.appendChild(imageContainer);
+                card.appendChild(productInfo);
+
+                return card;
+            }
+
+            showError() {
+                const container = document.getElementById('featured-products');
+                if (container) {
+                    container.innerHTML = '<p class="error">Failed to load featured products. Please try again later.</p>';
+                }
+            }
+        }
+
+        // Initialize home page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new HomePage();
+        });
+    </script>
+</body>
+</html>

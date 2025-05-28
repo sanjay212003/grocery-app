@@ -1,0 +1,107 @@
+<!-- frontend/pages/contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - FreshMart</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">🛒 FreshMart</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <a href="/cart" class="cart-icon">
+                🛒 Cart
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <p>We'd love to hear from you! Reach out to us with any questions, concerns, or feedback.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <h4>📍 Address</h4>
+                                <p>123 Fresh Street<br>Grocery District<br>City, State 12345</p>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <h4>📞 Phone</h4>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <h4>✉️ Email</h4>
+                                <p>support@freshmart.com</p>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <h4>🕒 Hours</h4>
+                                <p>Monday - Friday: 8:00 AM - 8:00 PM<br>
+                                   Saturday - Sunday: 9:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h3>Send us a Message</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 FreshMart. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.groceryApp.showSuccess('Thank you for your message! We\'ll get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

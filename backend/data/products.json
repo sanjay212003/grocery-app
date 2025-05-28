@@ -1,0 +1,84 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Fresh Bananas",
+      "price": 2.99,
+      "category": "fruits",
+      "image": "/images/bananas.jpg",
+      "description": "Fresh organic bananas, perfect for smoothies and snacks",
+      "inStock": true,
+      "weight": "1 bunch"
+    },
+    {
+      "id": 2,
+      "name": "Whole Milk",
+      "price": 3.49,
+      "category": "dairy",
+      "image": "/images/milk.jpg",
+      "description": "Fresh whole milk 1L, locally sourced",
+      "inStock": true,
+      "weight": "1L"
+    },
+    {
+      "id": 3,
+      "name": "Artisan Bread Loaf",
+      "price": 2.29,
+      "category": "bakery",
+      "image": "/images/bread.jpg",
+      "description": "Fresh baked artisan bread, made daily",
+      "inStock": true,
+      "weight": "500g"
+    },
+    {
+      "id": 4,
+      "name": "Chicken Breast",
+      "price": 8.99,
+      "category": "meat",
+      "image": "/images/chicken.jpg",
+      "description": "Fresh chicken breast, hormone-free",
+      "inStock": true,
+      "weight": "1kg"
+    },
+    {
+      "id": 5,
+      "name": "Roma Tomatoes",
+      "price": 4.99,
+      "category": "vegetables",
+      "image": "/images/tomatoes.jpg",
+      "description": "Fresh red Roma tomatoes, perfect for cooking",
+      "inStock": true,
+      "weight": "1kg"
+    },
+    {
+      "id": 6,
+      "name": "Green Apples",
+      "price": 3.99,
+      "category": "fruits",
+      "image": "/images/apples.jpg",
+      "description": "Crisp green apples, great for snacking",
+      "inStock": true,
+      "weight": "1kg"
+    },
+    {
+      "id": 7,
+      "name": "Cheddar Cheese",
+      "price": 5.99,
+      "category": "dairy",
+      "image": "/images/cheese.jpg",
+      "description": "Aged cheddar cheese, rich and creamy",
+      "inStock": true,
+      "weight": "200g"
+    },
+    {
+      "id": 8,
+      "name": "Carrots",
+      "price": 2.49,
+      "category": "vegetables",
+      "image": "/images/carrots.jpg",
+      "description": "Fresh organic carrots, perfect for cooking",
+      "inStock": true,
+      "weight": "1kg"
+    }
+  ]
+}
